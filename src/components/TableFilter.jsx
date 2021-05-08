@@ -61,6 +61,8 @@ export const TableFilter = () => {
 
     const paginatedItems = items.filter((item, index) => index >= startIndex && index < startIndex + perPage)
     const visibleItems = onSelectFilter(paginatedItems, inputValue)
+    const searchVisibleItems = onSelectFilter(items, inputValue)
+    const showPerPageSearchVisibleItems = searchVisibleItems.filter((item, index) => index < 10)
 
     return (
         <>
@@ -78,7 +80,7 @@ export const TableFilter = () => {
                 </select>
                 <input value={inputValue} type="text" onChange={handleInputChange}/>
             </div>
-            <Table visibleItems={visibleItems}/>
+            <Table visibleItems={inputValue ? showPerPageSearchVisibleItems : visibleItems}/>
         </>
     )
 }
