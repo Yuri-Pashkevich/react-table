@@ -6,6 +6,7 @@ export const TableFilter = () => {
 
     const items = useSelector(state => state.goods.items)
     const startIndex = useSelector(state => state.goods.startIndex)
+    const perPage = useSelector(state => state.goods.perPage)
     
     const [ column, setColumn ] = useState('name')
     const [ condition, setСondition ] = useState('=')
@@ -58,7 +59,7 @@ export const TableFilter = () => {
         }
     }
 
-    const paginatedItems = items.filter((item, index) => index >= startIndex && index < startIndex + 10)
+    const paginatedItems = items.filter((item, index) => index >= startIndex && index < startIndex + perPage)
     const visibleItems = onSelectFilter(paginatedItems, inputValue)
 
     return (
